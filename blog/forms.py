@@ -1,0 +1,36 @@
+from django import forms
+from .models import Post, Comment
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django import forms 
+from .models import *
+from PIL import Image
+
+class PostForm(forms.ModelForm):
+	class Meta:
+		model = Post
+		fields = ('title', 'text',)
+
+class SignUpForm(UserCreationForm):
+	first_name = forms.CharField(max_length = 20, required = False, help_text = 'Optional.')
+	last_name = forms.CharField(max_length = 20, required = False, help_text = 'Optional.')
+	email = forms.EmailField(max_length = 30, help_text = 'Required.Inform a valid email address.')
+
+class Meta:
+	model = User
+	fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
+
+class CommentForm(forms.ModelForm):
+	class Meta:
+		model = Comment
+		fields = ('name', 'email', 'body',)
+
+class UserProfileForm(forms.ModelForm):	
+    class Meta:
+        model = User
+        fields = ('username',)
+
+class ImageForm(forms.ModelForm):
+	class Meta:
+	    model = UserImage
+	    fields=('profile_pic',)

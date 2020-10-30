@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<h2 style="color: Red"> Profile details :- </h2>
+    <form method="get">
+    	<p> <b>User Name : </b> {{request.user.username}} </p>
+    	<p> <b>First Name : </b> {{request.user.first_name}} </p>
+    	<p> <b>Last Name : </b> {{request.user.last_name}} </p>
+    	<p> <b>Email ID : </b> {{request.user.email}} </p>
+
+    	<div class="UserImage">
+
+	    	{% if userimg.profile_pic %}
+	        	<img src= "{{ userimg.profile_pic.url }}" alt="Admin Image" > 
+	        {% endif %}
+	    </div>
+        <br>
+
+        <a class="btn btn-default" href="{% url 'blog:profile_edit' pk=user.pk %}">
+            edit </a>
+    </form>
+{% endblock %}
