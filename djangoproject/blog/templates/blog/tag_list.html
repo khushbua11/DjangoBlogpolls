@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<h3 style="color: Brown"> Tag List:- </h3>
+
+    {% for tag in tags %}
+        <div class="tag">
+            <h3> <a href="{% url 'blog:tag_post_list' slug=tag.slug %}" > {{ tag.name }} </a> </h3> 
+            <p>{{ tag.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
